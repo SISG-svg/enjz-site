@@ -147,21 +147,27 @@ footer.site li a:hover { color: #fff; }
   grid-template-columns: minmax(0, 1.02fr) minmax(0, .98fr);
   max-width: 1240px; margin: 0 auto; padding: 0 var(--gutter);
 }
-.hero-stage { position: relative; }
+/* Slides stack in one grid cell, so the container always keeps the height of
+   its tallest child and nothing can overlap what follows it. */
+.hero-stage, .hero-copy { display: grid; }
+.hero-stage > *, .hero-copy > * { grid-area: 1 / 1; }
+
 .slide {
-  margin: 0; opacity: 0; visibility: hidden;
+  margin: 0; opacity: 0; visibility: hidden; transform: scale(.985);
   transition: opacity 1.1s var(--bezier), transform 1.1s var(--bezier);
-  transform: scale(.985);
+  align-self: center; justify-self: center; width: 100%;
 }
-.slide:not(:first-child) { position: absolute; inset: 0; }
 .slide.is-on { opacity: 1; visibility: visible; transform: none; }
 .slide img {
-  width: 100%; height: 100%; object-fit: contain;
+  width: 100%; height: auto; max-height: 68vh; object-fit: contain;
+  margin-inline: auto;
   filter: drop-shadow(0 26px 46px rgba(20, 16, 12, .30));
 }
-.hero-copy { position: relative; min-height: 1px; }
-.htext { opacity: 0; visibility: hidden; transition: opacity .8s var(--bezier), transform .8s var(--bezier); transform: translateY(10px); }
-.htext:not(:first-child) { position: absolute; inset: 0; }
+.hero-copy { align-items: center; }
+.htext {
+  opacity: 0; visibility: hidden; transform: translateY(10px);
+  transition: opacity .8s var(--bezier), transform .8s var(--bezier);
+}
 .htext.is-on { opacity: 1; visibility: visible; transform: none; }
 .hero-verse {
   font-family: var(--naskh); font-weight: 400; line-height: 1.6;
@@ -416,8 +422,22 @@ footer.site li a:hover { color: #fff; }
   .work-lead { order: 2; }
   .work-verse { order: 1; }
   .split.flip > figure { order: 0; }
-  .hero-stage { min-height: 46vh; }
-  header.site nav { gap: .9rem; font-size: .95rem; }
+  .slide img { max-height: 52vh; }
+  .hero-fixed { margin-top: clamp(1.4rem, 5vw, 2.2rem); }
+}
+
+/* On a phone the header stays a single row so it never eats the screen. */
+@media (max-width: 760px) {
+  header.site { flex-wrap: nowrap; gap: .6rem; padding: .55rem var(--gutter); }
+  .mark { gap: .4rem; }
+  .mark-ar { font-size: 1.45rem; }
+  header.site nav { gap: .85rem; flex-wrap: nowrap; }
+  header.site nav a { font-size: .92rem; white-space: nowrap; }
+  header.site nav .nav-cta { padding: .34em .9em; }
+}
+@media (max-width: 400px) {
+  header.site nav { gap: .65rem; }
+  header.site nav a { font-size: .86rem; }
 }
 @media (max-width: 560px) {
   .foot-grid { grid-template-columns: 1fr 1fr; }
