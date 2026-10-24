@@ -10,17 +10,16 @@
 <meta property="og:description" content="Every ENJZ work is made after the conversation. Enquire about an edition, a format or a commission.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="ENJZ">
+<meta name="theme-color" content="#2A91B5">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Amiri:ital,wght@0,400;0,700;1,400&family=Noto+Naskh+Arabic:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/site.css">
-
+<script>document.documentElement.classList.add('js')</script>
 </head>
-<body>
+<body style="--accent:#2A91B5;--deep:#103846;--glow:#62BADA;--tint:#E7EFF2;--tintish:#D8E4E8">
 <a class="skip" href="#main">Skip to content</a>
-
 <header class="site">
   <a class="mark" href="../index.html" aria-label="ENJZ home">
-    <span class="mark-ar" lang="ar" dir="rtl">أنجِز</span><span class="mark-en">ENJZ</span>
-  </a>
+    <span class="mark-ar" lang="ar" dir="rtl">أنجِز</span><span class="mark-en">ENJZ</span></a>
   <nav aria-label="Main">
     <a href="../works/index.html">Works</a>
     <a href="../about/index.html">About</a>
@@ -29,118 +28,79 @@
   </nav>
 </header>
 <main id="main">
-
-<header class="page-head">
-  <h1><span lang="ar" dir="rtl">اطلب عملاً</span><span class="page-en">Enquire</span></h1>
-  <p>Nothing is kept in stock. Each work is produced after the conversation, which is how the editions stay small and how I know where every piece goes. Tell me what you are looking at and I will reply with what remains in the edition, the cost to make it, and shipping to you.</p>
-</header>
+<section class="page-hero"><div class="ghost" aria-hidden="true"><span>ح</span><span>د</span></div>
+<div class="page-head r"><h1><span lang="ar" dir="rtl">اطلب عملاً</span><span class="page-en">Enquire</span></h1>
+<p>Nothing is kept in stock. Each work is produced after the conversation, which is how the editions stay small and how I know where every piece goes. Tell me what you are looking at and I will reply with what remains in the edition, the cost to make it, and shipping to you.</p></div></section>
 
 <div class="enq">
-  <form id="enq" class="enq-form">
-    <p class="field">
-      <label for="f-work">Work</label>
-      <select id="f-work" name="work">
-        <option value="">Not sure yet — or a commission</option>
-        <option value="Absence">Absence — الغياب</option><option value="Choosing">Choosing — اختيار</option><option value="Compass">Compass — بوصلة</option><option value="Conversation">Conversation — حديث</option><option value="Destined">Destined — مكتوب</option><option value="Drunkenness">Drunkenness — ثمل</option><option value="Faith">Faith — إيمان</option><option value="Indulgence">Indulgence — ترف</option><option value="Lebanon">Lebanon — لبنان</option><option value="Message from Rumi">Message from Rumi — رسالة من الرومي</option><option value="Prayer">Prayer — صلاة</option><option value="Resistance">Resistance — Resistance - مقاومة</option><option value="Roots">Roots — جذور</option><option value="Seasons">Seasons — مواسم</option><option value="Text Message">Text Message — غيرِك</option><option value="The Dark Anthem">The Dark Anthem — النشيد المظلم</option><option value="The Imagination">The Imagination — الخيال</option><option value="The Poet">The Poet — الشاعر</option><option value="The Sculptor">The Sculptor — النحّات</option><option value="The Tryptich">The Tryptich — ثلاثة أجزاء</option><option value="The Warrior">The Warrior — المحارب</option><option value="Vision">Vision — رؤيا</option>
-      </select>
-    </p>
-    <p class="field">
-      <label for="f-format">Format</label>
-      <select id="f-format" name="format">
-        <option value="">To be decided together</option>
-        <option>A4</option><option>A3</option><option>A2</option><option>A1</option><option>A0</option>
-      </select>
-    </p>
-    <p class="field">
-      <label for="f-name">Your name</label>
-      <input id="f-name" name="name" type="text" autocomplete="name" required>
-    </p>
-    <p class="field">
-      <label for="f-email">Email</label>
-      <input id="f-email" name="email" type="email" autocomplete="email" required>
-    </p>
-    <p class="field">
-      <label for="f-where">Where it is going</label>
-      <input id="f-where" name="where" type="text" placeholder="City, country — and the wall, if you like">
-    </p>
-    <p class="field">
-      <label for="f-msg">Anything else</label>
-      <textarea id="f-msg" name="message" rows="5" placeholder="A commission, an exhibition, a question about the poem."></textarea>
-    </p>
+  <form id="enq" class="enq-form r">
+    <p class="field"><label for="f-work">Work</label>
+      <select id="f-work" name="work"><option value="">Not sure yet — or a commission</option><option value="Absence">Absence — الغياب</option><option value="Choosing">Choosing — اختيار</option><option value="Compass">Compass — بوصلة</option><option value="Conversation">Conversation — حديث</option><option value="Destined">Destined — مكتوب</option><option value="Drunkenness">Drunkenness — ثمل</option><option value="Faith">Faith — إيمان</option><option value="Indulgence">Indulgence — ترف</option><option value="Lebanon">Lebanon — لبنان</option><option value="Message from Rumi">Message from Rumi — رسالة من الرومي</option><option value="Prayer">Prayer — صلاة</option><option value="Resistance">Resistance — Resistance - مقاومة</option><option value="Roots">Roots — جذور</option><option value="Seasons">Seasons — مواسم</option><option value="Text Message">Text Message — غيرِك</option><option value="The Dark Anthem">The Dark Anthem — النشيد المظلم</option><option value="The Imagination">The Imagination — الخيال</option><option value="The Poet">The Poet — الشاعر</option><option value="The Sculptor">The Sculptor — النحّات</option><option value="The Tryptich">The Tryptich — ثلاثة أجزاء</option><option value="The Warrior">The Warrior — المحارب</option><option value="Vision">Vision — رؤيا</option></select></p>
+    <p class="field"><label for="f-format">Format</label>
+      <select id="f-format" name="format"><option value="">To be decided together</option>
+      <option>A4</option><option>A3</option><option>A2</option><option>A1</option><option>A0</option></select></p>
+    <p class="field"><label for="f-name">Your name</label>
+      <input id="f-name" name="name" type="text" autocomplete="name" required></p>
+    <p class="field"><label for="f-email">Email</label>
+      <input id="f-email" name="email" type="email" autocomplete="email" required></p>
+    <p class="field"><label for="f-where">Where it is going</label>
+      <input id="f-where" name="where" type="text" placeholder="City, country — and the wall, if you like"></p>
+    <p class="field"><label for="f-msg">Anything else</label>
+      <textarea id="f-msg" name="message" rows="5" placeholder="A commission, an exhibition, a question about the poem."></textarea></p>
     <button class="btn" type="submit">Send enquiry</button>
     <p class="enq-fallback">This opens your email app with the message ready. If nothing happens, write to
       <a href="mailto:zeinsourany@enjzworks.art">zeinsourany@enjzworks.art</a>.</p>
   </form>
-
-  <aside class="enq-aside">
+  <aside class="enq-aside r">
     <h2>Direct</h2>
     <p><a href="mailto:zeinsourany@enjzworks.art">zeinsourany@enjzworks.art</a></p>
     <p><a href="https://www.instagram.com/zeinsourany/" rel="me noopener">Instagram — @zeinsourany</a></p>
     <p><a href="https://zeinsourany.substack.com" rel="noopener">Substack — the writing</a></p>
     <h2>What happens next</h2>
-    <p>I answer personally, usually within two days. If the edition and format are agreed, the work is printed, signed, numbered and certified, then shipped within two to three weeks.</p>
+    <p>I answer personally, usually within two days. Once the edition and format are agreed, the work is printed, signed, numbered and certified, then shipped within two to three weeks.</p>
     <h2>Galleries and institutions</h2>
-    <p>For exhibitions, portfolio reviews or collaborations, write directly and say so in the first line — those go to the top.</p>
+    <p>For exhibitions, portfolio reviews or collaborations, write directly and say so in the first line.</p>
   </aside>
 </div>
-
 <script>
 (function () {
   var p = new URLSearchParams(location.search).get('work');
   var sel = document.getElementById('f-work');
-  if (p) {
-    var hit = Array.prototype.find.call(sel.options, function (o) { return o.value === p; });
-    if (hit) sel.value = hit.value;
-  }
+  if (p) { var hit = Array.prototype.find.call(sel.options, function (o) { return o.value === p; });
+    if (hit) sel.value = hit.value; }
   document.getElementById('enq').addEventListener('submit', function (e) {
     e.preventDefault();
     var d = new FormData(e.target), g = function (k) { return (d.get(k) || '').toString().trim(); };
     var work = g('work') || 'A commission';
-    var body = [
-      'Work: ' + work,
-      'Format: ' + (g('format') || 'to be decided'),
-      'Name: ' + g('name'),
-      'Email: ' + g('email'),
-      'Destination: ' + (g('where') || '—'),
-      '',
-      g('message') || ''
-    ].join('\n');
+    var body = ['Work: ' + work, 'Format: ' + (g('format') || 'to be decided'),
+      'Name: ' + g('name'), 'Email: ' + g('email'),
+      'Destination: ' + (g('where') || '—'), '', g('message') || ''].join('\n');
     location.href = 'mailto:zeinsourany@enjzworks.art?subject=' + encodeURIComponent('ENJZ enquiry — ' + work) +
       '&body=' + encodeURIComponent(body);
   });
 })();
 </script>
 </main>
-
 <footer class="site">
-  <div class="foot-grid">
-    <div class="foot-mark">
-      <span lang="ar" dir="rtl">أنجِز</span>
-      <p>Original Arabic poetry, written by hand and made into limited-edition works on Hahnemühle archival paper. Madrid.</p>
-    </div>
-    <div>
-      <h2>Collections</h2>
-      <ul><li><a href="../collections/lebanon/index.html">Lebanon</a></li><li><a href="../collections/indulgence/index.html">Indulgence</a></li><li><a href="../collections/hors-serie/index.html">Hors Série</a></li><li><a href="../collections/new-works/index.html">New Works</a></li></ul>
-    </div>
-    <div>
-      <h2>Studio</h2>
-      <ul>
-        <li><a href="../about/index.html">About the artist</a></li>
-        <li><a href="../enjz/index.html">Why ENJZ</a></li>
-        <li><a href="../editions/index.html">Editions &amp; production</a></li>
-        <li><a href="../enquire/index.html">Enquire about a work</a></li>
-      </ul>
-    </div>
-    <div>
-      <h2>Elsewhere</h2>
-      <ul>
-        <li><a href="mailto:zeinsourany@enjzworks.art">zeinsourany@enjzworks.art</a></li>
-        <li><a href="https://www.instagram.com/zeinsourany/" rel="me noopener">Instagram</a></li>
-        <li><a href="https://zeinsourany.substack.com" rel="noopener">Substack</a></li>
-      </ul>
-    </div>
+<div class="ghost" aria-hidden="true"><span>ج</span><span>ز</span></div>
+<div class="foot-grid">
+  <div class="foot-mark">
+    <span lang="ar" dir="rtl">أنجِز</span>
+    <p>Original Arabic poetry, written by hand and made into limited-edition works on Hahnemühle archival paper. Madrid.</p>
   </div>
-  <p class="rights">© 2026 Zein Sourany. All works and texts are the artist's own.</p>
+  <div><h2>Collections</h2><ul><li><a href="../collections/lebanon/index.html">Lebanon</a></li><li><a href="../collections/indulgence/index.html">Indulgence</a></li><li><a href="../collections/hors-serie/index.html">Hors Série</a></li><li><a href="../collections/new-works/index.html">New Works</a></li></ul></div>
+  <div><h2>Studio</h2><ul>
+    <li><a href="../about/index.html">About the artist</a></li>
+    <li><a href="../enjz/index.html">Why ENJZ</a></li>
+    <li><a href="../editions/index.html">Editions &amp; production</a></li>
+    <li><a href="../enquire/index.html">Enquire about a work</a></li></ul></div>
+  <div><h2>Elsewhere</h2><ul>
+    <li><a href="mailto:zeinsourany@enjzworks.art">zeinsourany@enjzworks.art</a></li>
+    <li><a href="https://www.instagram.com/zeinsourany/" rel="me noopener">Instagram</a></li>
+    <li><a href="https://zeinsourany.substack.com" rel="noopener">Substack</a></li></ul></div>
+</div>
+<p class="rights">© 2026 Zein Sourany. All works and texts are the artist's own.</p>
 </footer>
+<script src="../assets/site.js" defer></script>
 </body>
 </html>
