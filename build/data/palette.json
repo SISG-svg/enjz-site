@@ -3,232 +3,232 @@
   "accent": "#9F4145",
   "deep": "#3A1C1E",
   "glow": "#CA7176",
-  "tint": "#F2E7E8",
-  "tintish": "#E8D8D9",
+  "tint": "#F4EFEF",
+  "tintish": "#EDE5E5",
   "hue": 357
  },
  "choosing": {
   "accent": "#73419F",
   "deep": "#2C1C3A",
   "glow": "#A171CA",
-  "tint": "#EDE7F2",
-  "tintish": "#E0D8E8",
+  "tint": "#F2EFF4",
+  "tintish": "#E9E5ED",
   "hue": 272
  },
  "compass": {
   "accent": "#C24A1D",
   "deep": "#4A1D0C",
   "glow": "#E57D57",
-  "tint": "#F2EAE7",
-  "tintish": "#E8DCD8",
+  "tint": "#F4F1EF",
+  "tintish": "#EDE7E5",
   "hue": 16
  },
  "conversation": {
   "accent": "#41639F",
   "deep": "#1C273A",
   "glow": "#7191CA",
-  "tint": "#E7EBF2",
-  "tintish": "#D8DEE8",
+  "tint": "#EFF1F4",
+  "tintish": "#E5E8ED",
   "hue": 218
  },
  "conversation-2": {
   "accent": "#41639F",
   "deep": "#1C273A",
   "glow": "#7191CA",
-  "tint": "#E7EBF2",
-  "tintish": "#D8DEE8",
+  "tint": "#EFF1F4",
+  "tintish": "#E5E8ED",
   "hue": 218
  },
  "crossroads": {
   "accent": "#9F4170",
   "deep": "#3A1C2B",
   "glow": "#CA719E",
-  "tint": "#F2E7ED",
-  "tintish": "#E8D8E0",
+  "tint": "#F4EFF2",
+  "tintish": "#EDE5E9",
   "hue": 330
  },
  "destined": {
   "accent": "#A95437",
   "deep": "#412015",
   "glow": "#CF856C",
-  "tint": "#F2EAE7",
-  "tintish": "#E8DCD8",
+  "tint": "#F4F0EF",
+  "tintish": "#EDE7E5",
   "hue": 15
  },
  "drunkenness": {
   "accent": "#BB242D",
   "deep": "#480E11",
   "glow": "#DF5C64",
-  "tint": "#F2E7E8",
-  "tintish": "#E8D8D9",
+  "tint": "#F4EFEF",
+  "tintish": "#EDE5E5",
   "hue": 357
  },
  "faith": {
   "accent": "#2A91B5",
   "deep": "#103846",
   "glow": "#62BADA",
-  "tint": "#E7EFF2",
-  "tintish": "#D8E4E8",
+  "tint": "#EFF3F4",
+  "tintish": "#E5EBED",
   "hue": 196
  },
  "indulgence": {
   "accent": "#A23D4D",
   "deep": "#3E171D",
   "glow": "#CA717F",
-  "tint": "#F2E7E9",
-  "tintish": "#E8D8DA",
+  "tint": "#F4EFF0",
+  "tintish": "#EDE5E6",
   "hue": 351
  },
  "lebanon": {
   "accent": "#9F5D41",
   "deep": "#3A251B",
   "glow": "#CA8C71",
-  "tint": "#F2EBE7",
-  "tintish": "#E8DDD8",
+  "tint": "#F4F1EF",
+  "tintish": "#EDE7E5",
   "hue": 18
  },
  "message-from-rumi": {
   "accent": "#A1483E",
   "deep": "#3E1B18",
   "glow": "#CA7A71",
-  "tint": "#F2E8E7",
-  "tintish": "#E8DAD8",
+  "tint": "#F4F0EF",
+  "tintish": "#EDE6E5",
   "hue": 6
  },
  "prayer": {
   "accent": "#B3802D",
   "deep": "#453111",
   "glow": "#D8AC64",
-  "tint": "#F2EEE7",
-  "tintish": "#E8E2D8",
+  "tint": "#F4F2EF",
+  "tintish": "#EDEAE5",
   "hue": 37
  },
  "resistance": {
   "accent": "#9F7941",
   "deep": "#3A2E1C",
   "glow": "#CAA771",
-  "tint": "#F2EEE7",
-  "tintish": "#E8E2D8",
+  "tint": "#F4F2EF",
+  "tintish": "#EDEAE5",
   "hue": 36
  },
  "roots": {
   "accent": "#BC2340",
   "deep": "#480D18",
   "glow": "#DF5C75",
-  "tint": "#F2E7E9",
-  "tintish": "#E8D8DB",
+  "tint": "#F4EFF0",
+  "tintish": "#EDE5E6",
   "hue": 349
  },
  "seasons": {
   "accent": "#9F7741",
   "deep": "#3A2D1C",
   "glow": "#CAA571",
-  "tint": "#F2EDE7",
-  "tintish": "#E8E1D8",
+  "tint": "#F4F2EF",
+  "tintish": "#EDE9E5",
   "hue": 35
  },
  "text-message": {
   "accent": "#9F7341",
   "deep": "#3A2C1C",
   "glow": "#CAA171",
-  "tint": "#F2EDE7",
-  "tintish": "#E8E0D8",
+  "tint": "#F4F2EF",
+  "tintish": "#EDE9E5",
   "hue": 32
  },
  "the-cedar": {
   "accent": "#AD5632",
   "deep": "#432113",
   "glow": "#D38869",
-  "tint": "#F2EAE7",
-  "tintish": "#E8DDD8",
+  "tint": "#F4F1EF",
+  "tintish": "#EDE7E5",
   "hue": 18
  },
  "the-dark-anthem": {
   "accent": "#C9161D",
   "deep": "#4A0C0E",
   "glow": "#F04B52",
-  "tint": "#F2E7E8",
-  "tintish": "#E8D8D9",
+  "tint": "#F4EFEF",
+  "tintish": "#EDE5E5",
   "hue": 358
  },
  "the-dark-knight": {
   "accent": "#3E6DA2",
   "deep": "#182A3E",
   "glow": "#719BCA",
-  "tint": "#E7ECF2",
-  "tintish": "#D8DFE8",
+  "tint": "#EFF2F4",
+  "tintish": "#E5E9ED",
   "hue": 212
  },
  "the-imagination": {
   "accent": "#9F4156",
   "deep": "#3C1A21",
   "glow": "#CA7185",
-  "tint": "#F2E7EA",
-  "tintish": "#E8D8DB",
+  "tint": "#F4EFF0",
+  "tintish": "#EDE5E7",
   "hue": 347
  },
  "the-oracle": {
   "accent": "#16ADC9",
   "deep": "#0C404A",
   "glow": "#4DD5EE",
-  "tint": "#E7F0F2",
-  "tintish": "#D8E5E8",
+  "tint": "#EFF3F4",
+  "tintish": "#E5ECED",
   "hue": 190
  },
  "the-poet": {
   "accent": "#BB7B24",
   "deep": "#482F0E",
   "glow": "#DFA75C",
-  "tint": "#F2EDE7",
-  "tintish": "#E8E1D8",
+  "tint": "#F4F2EF",
+  "tintish": "#EDE9E5",
   "hue": 34
  },
  "the-sculptor": {
   "accent": "#3C84A4",
   "deep": "#17333F",
   "glow": "#71AFCB",
-  "tint": "#E7EFF2",
-  "tintish": "#D8E3E8",
+  "tint": "#EFF3F4",
+  "tintish": "#E5EAED",
   "hue": 198
  },
  "the-tryptich": {
   "accent": "#983EA1",
   "deep": "#3A183E",
   "glow": "#C271CA",
-  "tint": "#F1E7F2",
-  "tintish": "#E6D8E8",
+  "tint": "#F4EFF4",
+  "tintish": "#ECE5ED",
   "hue": 295
  },
  "the-tryptich-2": {
   "accent": "#983EA1",
   "deep": "#3A183E",
   "glow": "#C271CA",
-  "tint": "#F1E7F2",
-  "tintish": "#E6D8E8",
+  "tint": "#F4EFF4",
+  "tintish": "#ECE5ED",
   "hue": 295
  },
  "the-warrior": {
   "accent": "#9F8441",
   "deep": "#3A311C",
   "glow": "#CAB171",
-  "tint": "#F2EFE7",
-  "tintish": "#E8E3D8",
+  "tint": "#F4F3EF",
+  "tintish": "#EDEBE5",
   "hue": 43
  },
  "the-white-knight": {
   "accent": "#3775A9",
   "deep": "#152D41",
   "glow": "#6CA2CF",
-  "tint": "#E7EDF2",
-  "tintish": "#D8E1E8",
+  "tint": "#EFF2F4",
+  "tintish": "#E5E9ED",
   "hue": 207
  },
  "vision": {
   "accent": "#C9161D",
   "deep": "#4A0C0E",
   "glow": "#EE4D54",
-  "tint": "#F2E7E8",
-  "tintish": "#E8D8D9",
+  "tint": "#F4EFEF",
+  "tintish": "#EDE5E5",
   "hue": 358
  }
 }
