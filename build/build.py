@@ -187,6 +187,18 @@ FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com">'
          '<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400'
          '&family=Amiri:ital,wght@0,400;0,700;1,400&family=Noto+Naskh+Arabic:wght@400;500&display=swap" rel="stylesheet">')
 
+def asset_version():
+    """Stamp the stylesheet and script with a content hash, so a browser that
+    cached an old build cannot keep serving it after a change."""
+    import hashlib
+    out = {}
+    for name in ("site.css", "site.js"):
+        f = OUT / "assets" / name
+        out[name] = hashlib.md5(f.read_bytes()).hexdigest()[:8] if f.exists() else ""
+    return out
+
+ASSETV = asset_version()
+
 def ghost(g):
     return f'<div class="ghost" aria-hidden="true"><span>{g[0]}</span><span>{g[1]}</span></div>'
 
@@ -252,7 +264,7 @@ def page(title, desc, body, depth=0, pal=None, noindex=False, canonical="", gl=(
 <meta property="og:site_name" content="ENJZ">
 <meta name="theme-color" content="{pal['accent']}">
 {FONTS}
-<link rel="stylesheet" href="{up}assets/site.css">
+<link rel="stylesheet" href="{up}assets/site.css?v={ASSETV['site.css']}">
 <script>document.documentElement.classList.add('js')</script>
 </head>
 <body style="{theme_style(pal)}">
@@ -262,7 +274,7 @@ def page(title, desc, body, depth=0, pal=None, noindex=False, canonical="", gl=(
 {body}
 </main>
 {foot}
-<script src="{up}assets/site.js" defer></script>
+<script src="{up}assets/site.js?v={ASSETV['site.js']}" defer></script>
 </body>
 </html>"""
 
