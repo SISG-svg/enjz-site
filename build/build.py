@@ -174,8 +174,10 @@ for ch in content["collection_order"]:
     if members:
         cols.append({**meta, "handle": ch, "works": members, "pal": members[0]["pal"]})
 
-HERO_SLUGS = ["vision", "prayer", "the-oracle", "resistance", "absence", "lebanon"]
-HEROES = [by_slug[s] for s in HERO_SLUGS if s in by_slug and by_slug[s]["images"]][:6]
+# Only publicly listed works may appear here — hidden pieces stay link-only.
+HERO_SLUGS = ["vision", "prayer", "faith", "resistance", "absence", "lebanon"]
+HEROES = [by_slug[s] for s in HERO_SLUGS
+          if s in by_slug and by_slug[s]["images"] and by_slug[s]["listed"]][:6]
 if not HEROES: HEROES = listed[:5]
 
 # ---------------------------------------------------------------- chrome
@@ -585,8 +587,11 @@ enquire = f"""<section class="page-hero">{ghost(("ح", "د"))}
 (function () {{
   var p = new URLSearchParams(location.search).get('work');
   var sel = document.getElementById('f-work');
-  if (p) {{ var hit = Array.prototype.find.call(sel.options, function (o) {{ return o.value === p; }});
-    if (hit) sel.value = hit.value; }}
+  if (p) {{
+    var hit = Array.prototype.find.call(sel.options, function (o) {{ return o.value === p; }});
+    if (!hit) {{ hit = new Option(p, p); sel.add(hit); }}   // link-only works
+    sel.value = hit.value;
+  }}
   document.getElementById('enq').addEventListener('submit', function (e) {{
     e.preventDefault();
     var d = new FormData(e.target), g = function (k) {{ return (d.get(k) || '').toString().trim(); }};

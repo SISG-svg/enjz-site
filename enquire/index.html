@@ -66,8 +66,11 @@
 (function () {
   var p = new URLSearchParams(location.search).get('work');
   var sel = document.getElementById('f-work');
-  if (p) { var hit = Array.prototype.find.call(sel.options, function (o) { return o.value === p; });
-    if (hit) sel.value = hit.value; }
+  if (p) {
+    var hit = Array.prototype.find.call(sel.options, function (o) { return o.value === p; });
+    if (!hit) { hit = new Option(p, p); sel.add(hit); }   // link-only works
+    sel.value = hit.value;
+  }
   document.getElementById('enq').addEventListener('submit', function (e) {
     e.preventDefault();
     var d = new FormData(e.target), g = function (k) { return (d.get(k) || '').toString().trim(); };
