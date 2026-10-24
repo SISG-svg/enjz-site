@@ -1,0 +1,62 @@
+name: Fetch artwork images
+
+# Pulls every artwork image out of Shopify's CDN, resizes it for the web and
+# commits it into this repository. Runs by itself the first time the repo is
+# pushed, and can be re-run from the Actions tab at any time.
+#
+# IMPORTANT: this must finish successfully before the Shopify store is closed.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fetch-images
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install ImageMagick
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq imagemagick
+
+      - name: Download and resize images
+        run: python3 scripts/fetch_images.py
+
+      - name: Commit anything new
+        run: |
+          git config user.name  "enjz-image-bot"
+          git config user.email "actions@github.com"
+          if [ -n "$(git status --porcelain assets/img)" ]; then
+            git add assets/img
+            git commit -m "Add artwork images fetched from Shopify CDN"
+            git push
+            echo "Images committed."
+          else
+            echo "No new images — everything already in the repo."
+          fi
+
+      - name: Summary
+        run: |
+          COUNT=$(find assets/img -name '*-full.jpg' 2>/dev/null | wc -l)
+          TOTAL=$(python3 -c "import json;print(len(json.load(open('assets/images.json'))))")
+          {
+            echo "### Artwork images"
+            echo ""
+            echo "**$COUNT of $TOTAL** works images are now stored in this repository."
+            if [ "$COUNT" -lt "$TOTAL" ]; then
+              echo ""
+              echo "Some images are still missing. Re-run this workflow before closing the Shopify store."
+            else
+              echo ""
+              echo "All images are in. The site no longer depends on Shopify."
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
