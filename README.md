@@ -56,8 +56,12 @@ At Namecheap, replace the Shopify DNS records for `enjzworks.art` with:
 | A | @ | 185.199.111.153 |
 | CNAME | www | YOUR-USERNAME.github.io |
 
-Then in **Settings → Pages**, enter `enjzworks.art` as the custom domain and,
-once the tick appears, switch on **Enforce HTTPS**. DNS can take a few hours.
+Then in **Settings → Pages**, type `enjzworks.art` into **Custom domain** and
+save. GitHub writes the CNAME file itself. Once the tick appears, switch on
+**Enforce HTTPS**. DNS can take a few hours.
+
+Until you do that, the site lives at https://sisg-svg.github.io/enjz-site/ —
+which is where to check it before moving the domain.
 
 After the domain resolves and the images are committed, the Shopify store can be
 closed. Not before.
@@ -110,7 +114,7 @@ products/ pages/ cart/ redirects from the old Shopify addresses
 build/                the generator and the Shopify export it was built from
 scripts/fetch_images.py   image fetcher, also runnable locally
 .github/workflows/    the two jobs: fetch images, deploy site
-CNAME, sitemap.xml, robots.txt
+sitemap.xml, robots.txt
 ```
 
 Running the images locally instead, if you ever want to:
