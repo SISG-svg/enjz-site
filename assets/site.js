@@ -10,12 +10,13 @@
   var splash = document.getElementById('splash');
   if (splash) {
     var drop = function () {
-      splash.style.transition = 'opacity .45s ease';
+      splash.style.transition = 'opacity .6s cubic-bezier(.16,1,.3,1), transform .6s cubic-bezier(.16,1,.3,1)';
       splash.style.opacity = '0';
+      splash.style.transform = 'scale(1.03)';
       setTimeout(function () {
         splash.style.display = 'none';
-        document.body.style.overflow = '';
-      }, 450);
+        document.body.style.overflow = 'visible';
+      }, 600);
     };
     splash.addEventListener('click', drop);
     document.addEventListener('keydown', function onKey(e) {
@@ -27,9 +28,9 @@
     setTimeout(function () {
       if (splash.style.display !== 'none') {
         splash.style.display = 'none';
-        document.body.style.overflow = '';
+        document.body.style.overflow = 'visible';
       }
-    }, 4200);
+    }, 6400);
   }
 
   /* --- header hairline ------------------------------------------- */

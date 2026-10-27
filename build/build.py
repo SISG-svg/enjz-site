@@ -265,7 +265,7 @@ def page(title, desc, body, depth=0, pal=None, noindex=False, canonical="", gl=(
 <meta name="theme-color" content="{pal['accent']}">
 {FONTS}
 <link rel="stylesheet" href="{up}assets/site.css?v={ASSETV['site.css']}">
-<script>(function(d){{d.classList.add('js');try{{if(sessionStorage.getItem('enjz-seen'))d.classList.add('seen');else sessionStorage.setItem('enjz-seen','1');}}catch(e){{}}}})(document.documentElement)</script>
+<script>document.documentElement.classList.add('js')</script>
 </head>
 <body style="{theme_style(pal)}">
 <a class="skip" href="#main">Skip to content</a>
