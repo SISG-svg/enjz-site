@@ -215,7 +215,7 @@ def theme_style(pal):
     return ";".join(f"--{k}:{v}" for k, v in pal.items() if k in
                     ("accent", "deep", "glow", "tint", "tintish"))
 
-def page(title, desc, body, depth=0, pal=None, noindex=False, canonical="", gl=("أ", "ن")):
+def page(title, desc, body, depth=0, pal=None, noindex=False, canonical="", gl=("أ", "ن"), splash=""):
     up = "../" * depth
     pal = pal or HOUSE
     nav = f"""<header class="site">
@@ -265,10 +265,11 @@ def page(title, desc, body, depth=0, pal=None, noindex=False, canonical="", gl=(
 <meta name="theme-color" content="{pal['accent']}">
 {FONTS}
 <link rel="stylesheet" href="{up}assets/site.css?v={ASSETV['site.css']}">
-<script>document.documentElement.classList.add('js')</script>
+<script>(function(d){{d.classList.add('js');try{{if(sessionStorage.getItem('enjz-seen'))d.classList.add('seen');else sessionStorage.setItem('enjz-seen','1');}}catch(e){{}}}})(document.documentElement)</script>
 </head>
 <body style="{theme_style(pal)}">
 <a class="skip" href="#main">Skip to content</a>
+{splash}
 {nav}
 <main id="main">
 {body}
@@ -338,11 +339,28 @@ home = f"""<section class="hero" id="hero">{ghost(("أ", "ن"))}
   <div class="hero-links">
     <a class="btn" href="works/index.html">See the works</a>
     <a class="btn quiet" href="enquire/index.html">Commission a piece</a>
-    <div class="dots" role="group" aria-label="Choose a work">{"".join(dots)}</div>
+    <div class="hero-nav">
+      <button class="ctrl hero-prev" type="button" aria-label="Previous work">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <div class="dots" role="group" aria-label="Choose a work">{"".join(dots)}</div>
+      <button class="ctrl hero-next" type="button" aria-label="Next work">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+    </div>
   </div>
 </div></section>
 
-<section class="strip" aria-label="All works"><div class="strip-track">{marquee}</div></section>
+<section class="strip-wrap" aria-label="All works">
+  <div class="strip" tabindex="0"><div class="strip-track">{marquee}</div></div>
+  <div class="strip-controls">
+    <button class="ctrl strip-back" type="button" aria-label="Scroll back">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <button class="ctrl strip-play" type="button" aria-label="Pause the strip">
+      <svg class="pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5v14M15 5v14"/></svg>
+      <svg class="play" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4l12 8-12 8z"/></svg></button>
+    <button class="ctrl strip-fwd" type="button" aria-label="Scroll forward">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+  </div>
+</section>
 
 <section class="statement r"><p>Arabic here is <em>material</em>, not ornament — letters with weight, silence and history, made into something you can live beside.</p></section>
 
@@ -352,8 +370,17 @@ home = f"""<section class="hero" id="hero">{ghost(("أ", "ن"))}
          "Every piece is made after the conversation. Tell me the work, the format and the wall it is going to, and I will tell you what is still available in the edition and what it costs to make.",
          "enquire/index.html", "Start a conversation", ("ض", "ح"))}"""
 
+SPLASH = f"""<div class="splash" id="splash" aria-hidden="true">
+  <div class="splash-art">
+    {"".join(img_tag(w["images"][0], "thumb", loading="eager") for w in HEROES[:3])}
+  </div>
+  <div class="splash-letters" aria-hidden="true"><span>أ</span><span>ن</span><span>ج</span><span>ز</span></div>
+  <div class="splash-mark"><b lang="ar" dir="rtl">أنجِز</b><i></i></div>
+  <button class="splash-skip" type="button">Skip</button>
+</div>"""
+
 write("index.html", page("ENJZ — Arabic Poetry as Visual Art | Zein Sourany",
-     SHOP["description"], home, 0, HEROES[0]["pal"], canonical=""))
+     SHOP["description"], home, 0, HEROES[0]["pal"], canonical="", splash=SPLASH))
 
 # ---------------------------------------------------------------- works index
 
@@ -418,6 +445,11 @@ for w in works:
     crumb = (f'<a href="../../collections/{cmeta["slug"]}/index.html">{esc(cmeta["title_en"])}</a>'
              if cmeta else '<a href="../index.html">Works</a>')
     enq = f"../../enquire/index.html?work={w['name_en'].replace(' ', '%20')}"
+    reel_url = (content.get("reels") or {}).get(w["slug"], "")
+    reel = (f'<a class="reel" href="{esc(reel_url)}" target="_blank" rel="noopener">'
+            '<svg viewBox="0 0 24 24" aria-hidden="true">'
+            '<rect x="3" y="3" width="18" height="18" rx="5"/><path d="M10 9l5 3-5 3z"/></svg>'
+            f'Watch the reel for {esc(w["name_en"])}</a>') if reel_url else ""
     h1 = (f'<h1 lang="ar" dir="rtl">{esc(w["verse_ar"])}</h1>' if w["verse_ar"]
           else f'<h1>{esc(w["name_en"])}</h1>')
 
@@ -435,6 +467,7 @@ for w in works:
   <div class="work-prose r">{"".join(f"<p>{esc(t)}</p>" for t in w["prose"])}</div>
   <aside class="work-aside r">{editions}
     <a class="btn" href="{enq}">Enquire about this work</a>
+    {reel}
     <div class="aside-note">{content['production']}</div></aside>
 </div>
 {plates}
@@ -455,6 +488,17 @@ def pic(slug, idx, kind="full", sizes="(max-width:900px) 92vw, 46vw", up="../"):
     if not w or not w["images"]: return ""
     return img_tag(w["images"][min(idx, len(w["images"]) - 1)], kind, sizes=sizes, up=up)
 
+def detail(slug, idx, up="../"):
+    """A close-up that says which work it belongs to, and links to it."""
+    w = by_slug.get(slug)
+    if not w or not w["images"]:
+        return ""
+    rec = w["images"][min(idx, len(w["images"]) - 1)]
+    return (f'<a href="{up}works/{w["slug"]}/index.html"><figure>'
+            + img_tag(rec, "thumb", sizes="(max-width:700px) 45vw, 22vw", up=up)
+            + f'<figcaption><span lang="ar" dir="rtl">{esc(w["name_ar"])}</span> · {esc(w["name_en"])}</figcaption>'
+            + '</figure></a>')
+
 def thumb(slug, idx, up="../"):
     w = by_slug.get(slug)
     if not w or not w["images"]: return ""
@@ -469,7 +513,7 @@ about = f"""<section class="page-hero">{ghost(("ز", "ن"))}
 <div class="split r">
   <figure>{pic("vision", 4)}</figure>
   <div class="txt">
-    <p lang="ar" dir="rtl">زين العابدين الصوراني</p>
+    <p lang="ar" dir="rtl">زين الصوراني</p>
     <p>I am a Lebanese artist based in Madrid. My work lives at the intersection of language, memory and form.</p>
     <p>I work primarily with Arabic text — not as calligraphy in the traditional sense, but as meaning. Letters treated as living material, carrying weight, silence and history.</p>
   </div>
@@ -487,10 +531,10 @@ about = f"""<section class="page-hero">{ghost(("ز", "ن"))}
 {ghost(("ح", "ر"))}
 <div class="band-in">
   <div class="band-head r"><h2><span lang="ar" dir="rtl">التفاصيل</span><span class="band-en">Up close</span></h2>
-  <div class="band-copy"><p>Gold leaf, scratched grounds, ink pressed into the surface rather than laid on it. The detail is where the poem stops being a text.</p></div></div>
+  <div class="band-copy"><p>Gold leaf, scratched grounds, ink pressed into the surface rather than laid on it. The detail is where the poem stops being a text. Each of these is a close-up of a work — follow one to see it whole.</p></div></div>
 </div>
 <div class="detail-strip r">
-  {thumb("vision", 4)}{thumb("the-warrior", 0)}{thumb("lebanon", 2)}{thumb("absence", 1)}
+  {detail("vision", 4)}{detail("the-warrior", 0)}{detail("lebanon", 2)}{detail("absence", 1)}
 </div>
 </section>
 
