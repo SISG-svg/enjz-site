@@ -9,7 +9,7 @@ descriptions, verses, formats, prices and SEO text.
 
 ---
 
-## What you have to do (four steps, about fifteen minutes)
+## What you have to do (five steps, about twenty minutes)
 
 ### 1. Put this folder on GitHub
 
@@ -44,7 +44,30 @@ the repository the site borrows them from Shopify's CDN, and closing the store
 would empty every page. If the job reports failures, re-run it from the Actions
 tab — it only fetches what is still missing.
 
-### 4. Point the domain here
+### 4. Switch the enquiry form on
+
+The form needs a key before it can send anything. Without one it falls back to
+opening the visitor's email app, which fails silently on phones and work
+machines — so do this before the domain moves.
+
+1. Go to **https://web3forms.com** and put `zeinsourany@enjzworks.art` into the
+   box on the front page. No account, no password.
+2. A key arrives in that inbox — a long string like
+   `a1b2c3d4-0000-0000-0000-abcdef123456`.
+3. Open `build/data/content.json`, find `"form_access_key": ""` near the top,
+   and paste the key between the quotes.
+4. Run `cd build && python3 build.py`, then commit and push.
+
+Or just send the key to Claude and it will do steps 3 and 4.
+
+To check it works, open `/enquire/`, send yourself a test, and confirm it lands.
+The key is safe to keep in a public repository — that is how Web3Forms is
+designed; it only ever delivers to the address you verified.
+
+Free tier is 250 enquiries a month. The form also carries a hidden field that
+bots fill in and humans never see, which gets those submissions rejected.
+
+### 5. Point the domain here
 
 At Namecheap, replace the Shopify DNS records for `enjzworks.art` with:
 
@@ -54,7 +77,12 @@ At Namecheap, replace the Shopify DNS records for `enjzworks.art` with:
 | A | @ | 185.199.109.153 |
 | A | @ | 185.199.110.153 |
 | A | @ | 185.199.111.153 |
-| CNAME | www | YOUR-USERNAME.github.io |
+| CNAME | www | sisg-svg.github.io |
+
+**Leave the MX records alone.** They are what deliver mail to
+zeinsourany@enjzworks.art — the address the enquiry form sends to. Change only
+the A and CNAME records above. If you delete the MX records, enquiries are sent
+and then vanish, with nothing to show anyone went wrong.
 
 Then in **Settings → Pages**, type `enjzworks.art` into **Custom domain** and
 save. GitHub writes the CNAME file itself. Once the tick appears, switch on
@@ -93,7 +121,7 @@ The seven link-only works stay link-only: they have pages, they carry
 | Add or edit a work | Edit `build/data/products_all.json`, rebuild as above. |
 | Change the look | Edit `assets/site.css`. Nothing is generated from it. |
 | Rename "New Works" | In `build/data/content.json` under `collections`, change `title_en` / `title_ar`, rebuild. |
-| Collect enquiries in a form instead of email | Sign up at formspree.io, then in `enquire/index.html` change the form to `action="https://formspree.io/f/YOUR-ID" method="POST"` and delete the script at the bottom. |
+| Change where enquiries are sent | Get a new key from web3forms.com for the new address and replace `form_access_key` in `build/data/content.json`. |
 
 The hero work on the front page is set by `HERO` near the middle of
 `build/build.py` — currently *Vision*.

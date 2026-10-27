@@ -352,6 +352,27 @@ footer.site li a:hover { color: var(--accent); }
 .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--accent); }
 .field textarea { resize: vertical; }
 .enq-fallback { color: var(--ink-2); font-size: .92rem; margin: 1.1rem 0 0; }
+
+/* The honeypot: never shown, never focusable, but a bot filling in every
+   field will tick it and the submission is rejected. */
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+.enq-status { margin: 1rem 0 0; font-size: .96rem; }
+.enq-status:empty { display: none; }
+.enq-status.bad {
+  color: var(--ink); background: color-mix(in srgb, var(--accent) 10%, var(--paper));
+  border-left: 3px solid var(--accent); padding: .7rem .9rem;
+}
+.enq-status.bad a { color: var(--accent); }
+
+.enq-sent {
+  background: var(--paper-2); border-top: 2px solid var(--gold);
+  padding: clamp(1.6rem, 3.2vw, 2.4rem);
+  box-shadow: 0 20px 44px -36px rgba(34, 29, 22, .5);
+}
+.enq-sent h2 { font-weight: 400; font-size: clamp(1.3rem, 2.6vw, 1.75rem); margin: 0 0 .8rem; color: var(--accent); }
+.enq-sent p { margin: 0 0 1rem; max-width: 44ch; color: var(--ink-2); }
+.enq-sent p:last-child { margin-bottom: 0; }
 .enq-aside { color: var(--ink-2); }
 .enq-aside h2 { color: var(--ink); margin-top: 1.9rem; }
 .enq-aside h2:first-child { margin-top: 0; }

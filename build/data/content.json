@@ -5,9 +5,15 @@
     "email": "zeinsourany@enjzworks.art",
     "instagram": "https://www.instagram.com/zeinsourany/",
     "substack": "https://zeinsourany.substack.com",
-    "description": "Original Arabic poetry transformed into limited edition visual art by Lebanese poet Zein Sourany. Not calligraphy — handwritten verse on Hahnemühle archival paper. Madrid."
+    "description": "Original Arabic poetry transformed into limited edition visual art by Lebanese poet Zein Sourany. Not calligraphy — handwritten verse on Hahnemühle archival paper. Madrid.",
+    "form_access_key": ""
   },
-  "collection_order": ["lebanon-collection-لبنان", "taraf-indulgence-ترف", "hors-serie", "new-collection"],
+  "collection_order": [
+    "lebanon-collection-لبنان",
+    "taraf-indulgence-ترف",
+    "hors-serie",
+    "new-collection"
+  ],
   "collections": {
     "lebanon-collection-لبنان": {
       "slug": "lebanon",

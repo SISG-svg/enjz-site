@@ -580,10 +580,16 @@ enquire = f"""<section class="page-hero">{ghost(("ح", "د"))}
       <input id="f-where" name="where" type="text" placeholder="City, country — and the wall, if you like"></p>
     <p class="field"><label for="f-msg">Anything else</label>
       <textarea id="f-msg" name="message" rows="5" placeholder="A commission, an exhibition, a question about the poem."></textarea></p>
+    <label class="hp" aria-hidden="true"><input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off"></label>
     <button class="btn" type="submit">Send enquiry</button>
-    <p class="enq-fallback">This opens your email app with the message ready. If nothing happens, write to
-      <a href="mailto:{SHOP['email']}">{SHOP['email']}</a>.</p>
+    <p class="enq-status" id="enq-status" role="status" aria-live="polite"></p>
+    <p class="enq-fallback">Or write to <a href="mailto:{SHOP['email']}">{SHOP['email']}</a>.</p>
   </form>
+  <div class="enq-sent" id="enq-sent" hidden>
+    <h2>Your message is on its way</h2>
+    <p id="enq-sent-line">I read every enquiry myself and will come back to you, usually within two days.</p>
+    <p><a class="band-link" href="../works/index.html">Back to the works</a></p>
+  </div>
   <aside class="enq-aside r">
     <h2>Direct</h2>
     <p><a href="mailto:{SHOP['email']}">{SHOP['email']}</a></p>
@@ -597,22 +603,83 @@ enquire = f"""<section class="page-hero">{ghost(("ح", "د"))}
 </div>
 <script>
 (function () {{
-  var p = new URLSearchParams(location.search).get('work');
+  var KEY = "{SHOP['form_access_key']}";
+  var MAIL = "{SHOP['email']}";
+  var form = document.getElementById('enq');
   var sel = document.getElementById('f-work');
+  var note = document.getElementById('enq-status');
+  var sent = document.getElementById('enq-sent');
+
+  // A work arriving in the link — including a link-only piece that is not
+  // in the list — is selected, or added so it can still be enquired about.
+  var p = new URLSearchParams(location.search).get('work');
   if (p) {{
     var hit = Array.prototype.find.call(sel.options, function (o) {{ return o.value === p; }});
-    if (!hit) {{ hit = new Option(p, p); sel.add(hit); }}   // link-only works
+    if (!hit) {{ hit = new Option(p, p); sel.add(hit); }}
     sel.value = hit.value;
   }}
-  document.getElementById('enq').addEventListener('submit', function (e) {{
+
+  function values() {{
+    var fd = new FormData(form), o = {{}};
+    fd.forEach(function (v, k) {{ o[k] = (v || '').toString().trim(); }});
+    return o;
+  }}
+
+  function mailto(v, work) {{
+    var body = ['Work: ' + work, 'Format: ' + (v.format || 'to be decided'),
+      'Name: ' + v.name, 'Email: ' + v.email,
+      'Destination: ' + (v.where || '—'), '', v.message || ''].join('\\n');
+    location.href = 'mailto:' + MAIL + '?subject=' +
+      encodeURIComponent('ENJZ enquiry — ' + work) + '&body=' + encodeURIComponent(body);
+  }}
+
+  function fail(msg) {{
+    note.className = 'enq-status bad';
+    note.innerHTML = (msg || 'That did not send.') +
+      ' Please write to <a href="mailto:' + MAIL + '">' + MAIL + '</a> instead.';
+  }}
+
+  form.addEventListener('submit', function (e) {{
     e.preventDefault();
-    var d = new FormData(e.target), g = function (k) {{ return (d.get(k) || '').toString().trim(); }};
-    var work = g('work') || 'A commission';
-    var body = ['Work: ' + work, 'Format: ' + (g('format') || 'to be decided'),
-      'Name: ' + g('name'), 'Email: ' + g('email'),
-      'Destination: ' + (g('where') || '—'), '', g('message') || ''].join('\\n');
-    location.href = 'mailto:{SHOP["email"]}?subject=' + encodeURIComponent('ENJZ enquiry — ' + work) +
-      '&body=' + encodeURIComponent(body);
+    var v = values();
+    var work = v.work || 'A commission';
+
+    // No key configured yet: fall back to the visitor's mail app rather
+    // than failing silently.
+    if (!KEY) {{ mailto(v, work); return; }}
+
+    var btn = form.querySelector('button[type="submit"]');
+    var label = btn.textContent;
+    btn.disabled = true; btn.textContent = 'Sending…';
+    note.className = 'enq-status'; note.textContent = '';
+
+    v.access_key = KEY;
+    v.subject = 'ENJZ enquiry — ' + work;
+    v.from_name = 'ENJZ website';
+
+    fetch('https://api.web3forms.com/submit', {{
+      method: 'POST',
+      headers: {{ 'Content-Type': 'application/json', Accept: 'application/json' }},
+      body: JSON.stringify(v)
+    }})
+      .then(function (r) {{ return r.json().then(function (d) {{ return {{ ok: r.ok, d: d }}; }}); }})
+      .then(function (res) {{
+        if (res.ok) {{
+          document.getElementById('enq-sent-line').textContent =
+            work === 'A commission'
+              ? 'I read every enquiry myself and will come back to you, usually within two days.'
+              : 'I will come back to you about ' + work + ', usually within two days, with what remains in the edition and what it costs to make.';
+          form.hidden = true; sent.hidden = false;
+          sent.scrollIntoView({{ behavior: 'smooth', block: 'center' }});
+        }} else {{
+          fail(res.d && res.d.message);
+          btn.disabled = false; btn.textContent = label;
+        }}
+      }})
+      .catch(function () {{
+        fail('That did not send — you may be offline.');
+        btn.disabled = false; btn.textContent = label;
+      }});
   }});
 }})();
 </script>"""
