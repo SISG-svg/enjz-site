@@ -9,63 +9,32 @@ descriptions, verses, formats, prices and SEO text.
 
 ---
 
-## What you have to do (five steps, about twenty minutes)
+## Where this stands
 
-### 1. Put this folder on GitHub
+Steps 1 to 4 are **done**. The repository is live at
+**github.com/SISG-svg/enjz-site**, GitHub Pages is serving it, all 142 artwork
+images are committed here (so the site no longer needs Shopify for anything),
+and the enquiry form is switched on and delivering to
+zeinsourany@enjzworks.art.
 
-Create a new **empty** repository on github.com — call it `enjz-site`, keep it
-public — then from inside this folder:
+You can see the site right now at **https://sisg-svg.github.io/enjz-site/**
 
-```bash
-git init -b main
-git add .
-git commit -m "ENJZ site, moved off Shopify"
-git remote add origin https://github.com/YOUR-USERNAME/enjz-site.git
-git push -u origin main
-```
+**One step is left: move the domain.** After that, and only after that, the
+Shopify store can be closed.
 
-### 2. Turn on Pages
+<details>
+<summary>What was already done (for the record)</summary>
 
-Repository → **Settings** → **Pages** → **Source: GitHub Actions**. That's the
-only setting to change. The site builds and goes live at
-`https://YOUR-USERNAME.github.io/enjz-site/` within a minute or two.
+1. **Repository pushed** — SISG-svg/enjz-site, public.
+2. **Pages turned on** — Settings → Pages → Source: GitHub Actions.
+3. **Artwork collected** — the "Fetch artwork images" job pulled all 142 images
+   off Shopify's CDN, resized them and committed them. The site serves its own
+   images; closing Shopify will not empty any page.
+4. **Enquiry form switched on** — Web3Forms, key in `build/data/content.json`,
+   delivering to zeinsourany@enjzworks.art. Free tier 250 enquiries a month.
+   A hidden field rejects bot submissions.
 
-### 3. Let the robot collect the artwork
-
-The moment you push, a job called **Fetch artwork images** starts on GitHub's
-servers. It downloads all 142 artwork images from Shopify, resizes them for the
-web and commits them back here. You don't download anything.
-
-Watch it under the **Actions** tab. When it finishes it prints a line like
-*"All images are in. The site no longer depends on Shopify."*
-
-**Do not close Shopify until you have seen that line.** Until the images are in
-the repository the site borrows them from Shopify's CDN, and closing the store
-would empty every page. If the job reports failures, re-run it from the Actions
-tab — it only fetches what is still missing.
-
-### 4. Switch the enquiry form on
-
-The form needs a key before it can send anything. Without one it falls back to
-opening the visitor's email app, which fails silently on phones and work
-machines — so do this before the domain moves.
-
-1. Go to **https://web3forms.com** and put `zeinsourany@enjzworks.art` into the
-   box on the front page. No account, no password.
-2. A key arrives in that inbox — a long string like
-   `a1b2c3d4-0000-0000-0000-abcdef123456`.
-3. Open `build/data/content.json`, find `"form_access_key": ""` near the top,
-   and paste the key between the quotes.
-4. Run `cd build && python3 build.py`, then commit and push.
-
-Or just send the key to Claude and it will do steps 3 and 4.
-
-To check it works, open `/enquire/`, send yourself a test, and confirm it lands.
-The key is safe to keep in a public repository — that is how Web3Forms is
-designed; it only ever delivers to the address you verified.
-
-Free tier is 250 enquiries a month. The form also carries a hidden field that
-bots fill in and humans never see, which gets those submissions rejected.
+</details>
 
 ### 5. Point the domain here
 
